@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+.header {
+  display: flex;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.description {
+  font-size: 0.8rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.photo-img {
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-placeholder {
+  background-color: #f0f0f0;
+  height: 100%;
+  width: 100%;
+}

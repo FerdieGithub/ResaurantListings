@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="filters">
+    <app-restaurant-filters
+      [tags]="tags | async"
+      (filtersChange)="onFiltersChange($event)"
+    ></app-restaurant-filters>
+  </div>
+
+  <div class="content">
+    <app-restaurant-list [restaurants]="restaurants"></app-restaurant-list>
+  </div>
+</div>

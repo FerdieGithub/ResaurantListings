@@ -1,0 +1,9 @@
+<div *ngIf="!restaurants; else restaurantList">Loading...</div>
+
+<ng-template #restaurantList>
+  <app-restaurant-item
+    *ngFor="let restaurant of restaurants"
+    [restaurant]="restaurant"
+  >
+  </app-restaurant-item>
+</ng-template>
