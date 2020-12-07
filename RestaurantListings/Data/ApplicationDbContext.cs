@@ -25,8 +25,16 @@ namespace RestaurantListings.Data
             base.OnModelCreating(builder);
 
             //Indexes (and unique constraints)
+            builder.Entity<Restaurant>()
+                .HasIndex(t => new {t.VeganFriendly});
+            builder.Entity<Restaurant>()
+                .HasIndex(t => new {t.Tags});
+            builder.Entity<Restaurant>()
+                .HasIndex(t => new { t.Description });
+            builder.Entity<Restaurant>()
+                .HasIndex(t => new { t.Name });
             builder.Entity<UserRating>()
-                .HasIndex(t => new { UserSid = t.UserHandle, t.RestaurantId })
+                .HasIndex(t => new { t.UserHandle, t.RestaurantId })
                 .IsUnique();
 
             builder.Entity<Restaurant>(e =>

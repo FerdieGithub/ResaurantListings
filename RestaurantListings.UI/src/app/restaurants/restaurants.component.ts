@@ -47,7 +47,7 @@ export class RestaurantsComponent implements OnInit {
   ): Restaurant[] {
     if (filters.search) {
       restaurants = restaurants.filter(
-        (x) => x.name.search(filters.search) > -1
+        (x) => x.name.toLowerCase().search(filters.search.toLowerCase()) > -1 || x.description.search(filters.search.toLowerCase()) > -1
       );
     }
 

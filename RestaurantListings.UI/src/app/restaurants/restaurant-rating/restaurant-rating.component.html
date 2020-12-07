@@ -9,7 +9,7 @@
 <div *ngIf="authenticated">
   <mat-form-field appearance="fill">
     <mat-label>My Rating</mat-label>
-    <mat-select (selectionChange)="changeValue($event)" [(value)]="userRating">
+    <mat-select (selectionChange)="changeValue($event)" [(value)]="userRatingStr">
       <mat-option value="0">Not Rated</mat-option>
       <mat-option value="1">1 - Very Bad</mat-option>
       <mat-option value="2">2 - Poor</mat-option>

@@ -10,11 +10,12 @@ import { RestaurantsService } from 'app/restaurants/restaurants.service';
 export class RestaurantRatingComponent implements OnInit {
 
   @Input() starRating: number = 0;
-  @Input() userRating: string = "0";
+  @Input() userRating: number = 0;
   @Input() restaurantId: number = 0;
 
   authenticated = false;
   userName = "";
+  userRatingStr : string = "0";
 
   constructor(private restaurantsService: RestaurantsService) {}
 
@@ -23,7 +24,7 @@ export class RestaurantRatingComponent implements OnInit {
     if (this.authenticated){
       this.userName = this.restaurantsService.getUserId();
     }
-    this.userRating = parseInt(this.userRating).toString();
+    this.userRatingStr = parseInt(this.userRating.toString()).toString();
   }
 
   changeValue(e : any){
