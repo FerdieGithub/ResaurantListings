@@ -5,7 +5,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   exports: [
-    // Material Modules
     MatFormFieldModule,
     MatSelectModule
   ],

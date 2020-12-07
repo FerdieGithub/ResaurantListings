@@ -15,12 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     OAuthModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
-
-    // Material Modules
     AppMaterialModules
   ],
   exports: [
-    // Material Modules
     AppMaterialModules
   ],
   declarations: [AppComponent, NavbarComponent],

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "start:aspnet": "echo hello && ng serve --progress=false",
+    "start": "echo starting && ng serve --verbose",
+    "start:aspnet": "echo starting && ng serve --progress=false",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

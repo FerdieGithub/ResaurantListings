@@ -24,7 +24,9 @@ export class RestaurantRatingComponent implements OnInit {
     if (this.authenticated){
       this.userName = this.restaurantsService.getUserId();
     }
-    this.userRatingStr = parseInt(this.userRating.toString()).toString();
+    if (this.userRating !== undefined){
+      this.userRatingStr = parseInt(this.userRating.toString()).toString();
+    }
   }
 
   changeValue(e : any){

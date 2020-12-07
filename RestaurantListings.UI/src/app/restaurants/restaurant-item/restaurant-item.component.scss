@@ -4,20 +4,13 @@
 
 .item-template {
   width: 280px;
-  height: 410px;
+  height:370px;
   border-radius: 1.5em;
   background-color: rgb(255, 244, 231);
   padding: 8px;
   margin: 8px;
   float:left;
-}
-
-.item-template img.backgrnd {
-  position: absolute;
-  border-radius: 1.5em;
-  width: 280px;
-  height: 410px;
-  opacity: 0.1;
+  Z-index:1;
 }
 
 .header {
@@ -26,7 +19,7 @@
 
 .address {
   font-style: italic;
-  font-size: smaller;
+  font-size: x-small;
   font-weight: bold;
   margin-top: 1px;
 }
@@ -39,12 +32,16 @@
 
 .description {
   font-size: 0.8rem;
+  height:220px;
+  overflow:auto;
+  clear:both;
 }
 
 .contact-info {
   display: flex;
   flex-wrap: wrap;
   float:right;
+  margin-top:5px;
 }
 
 .photo {
@@ -69,13 +66,12 @@
 @media screen and (max-width: 830px) {
   .item-template {
     width: auto;
-    height: 410px;
     margin-right: 20px !important;
   }
-  
-  .item-template img.backgrnd {
-    width: auto;
-    height: 410px;
-    margin-right: 20px !important;
+  .description {
+    font-size: 0.8rem;
+    height:215px;
+    overflow:auto;
+    clear:both;
   }
 }

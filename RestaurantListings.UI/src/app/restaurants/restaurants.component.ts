@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Restaurant } from 'app/restaurants/restaurants.models';
@@ -9,22 +9,23 @@ import { RestaurantsService } from 'app/restaurants/restaurants.service';
   templateUrl: './restaurants.component.html',
   styleUrls: ['./restaurants.component.scss'],
 })
-export class RestaurantsComponent implements OnInit {
+export class RestaurantsComponent implements OnInit, OnDestroy  {
 
   restaurants: Restaurant[] | null = null;
-
   tags!: Observable<string[]>;
-
   filters = new BehaviorSubject<any>({});
+  subscription : any;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
   ngOnInit(): void {
-    this.filters
+
+    var restaurantsObservable = this.restaurantsService.getRestaurants();
+
+    this.subscription = this.filters
       .pipe(
         switchMap((filters) =>
-          this.restaurantsService
-            .getRestaurants()
+        restaurantsObservable
             .pipe(
               map((restaurants) => this.filterRestaurants(restaurants, filters))
             )
@@ -32,9 +33,12 @@ export class RestaurantsComponent implements OnInit {
       )
       .subscribe((restaurants) => (this.restaurants = restaurants));
 
-    this.tags = this.restaurantsService
-      .getRestaurants()
+    this.tags = restaurantsObservable
       .pipe(map((restaurants) => restaurants.flatMap((x) => x.tags)));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onFiltersChange(filters: any): void {
@@ -46,8 +50,9 @@ export class RestaurantsComponent implements OnInit {
     filters: any
   ): Restaurant[] {
     if (filters.search) {
+      var searchLower = filters.search.toLowerCase();
       restaurants = restaurants.filter(
-        (x) => x.name.toLowerCase().search(filters.search.toLowerCase()) > -1 || x.description.search(filters.search.toLowerCase()) > -1
+        (x) => x.name.toLowerCase().search(searchLower) > -1 || x.description.toLowerCase().search(searchLower) > -1
       );
     }
 
