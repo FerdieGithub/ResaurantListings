@@ -26,9 +26,16 @@ export class RestaurantFiltersComponent implements OnInit {
     this.form.valueChanges.subscribe(this.filtersChange);
   }
 
-  onTagChecked(tag: string): void {
+  onTagChecked(e : any, tag: string): void {
     const tags = this.form.value.tags;
-    tags.push(tag);
+    if (e.target.checked){
+      tags.push(tag);
+    }else{
+      let index: number = tags.findIndex((x: { toString: () => string; }) => x === tag);
+      if (index != -1){
+        tags.splice(index, 1);
+      }
+    }
     this.form.patchValue({ tags });
   }
 }

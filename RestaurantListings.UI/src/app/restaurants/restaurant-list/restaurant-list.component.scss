@@ -1,0 +1,13 @@
+.list-template{
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, 300px);
+    width: 100%;
+}
+
+@media screen and (max-width: 530px) {
+    .list-template {
+      float:left;
+      text-align: center;
+    }
+}

@@ -9,4 +9,5 @@ export interface Restaurant {
   photoUri: string | null;
   familyFriendly: boolean;
   veganFriendly: boolean;
+  userRating: number;
 }

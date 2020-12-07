@@ -9,15 +9,16 @@ import { RestaurantListComponent } from 'app/restaurants/restaurant-list/restaur
 import { RestaurantItemComponent } from 'app/restaurants/restaurant-item/restaurant-item.component';
 import { RestaurantFiltersComponent } from 'app/restaurants/restaurant-filters/restaurant-filters.component';
 import { RestaurantRatingComponent } from './restaurant-rating/restaurant-rating.component';
+import { AppMaterialModules } from 'app/material.module';
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, RestaurantsRoutingModule],
+  imports: [CommonModule, ReactiveFormsModule, RestaurantsRoutingModule, AppMaterialModules],
   declarations: [
     RestaurantsComponent,
     RestaurantListComponent,
     RestaurantItemComponent,
     RestaurantFiltersComponent,
-    RestaurantRatingComponent,
+    RestaurantRatingComponent
   ],
 })
 export class RestaurantsModule {}

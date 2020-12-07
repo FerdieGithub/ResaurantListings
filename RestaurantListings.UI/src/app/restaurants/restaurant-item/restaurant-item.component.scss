@@ -2,13 +2,39 @@
   display: block;
 }
 
+.item-template {
+  width: 280px;
+  height: 410px;
+  border-radius: 1.5em;
+  background-color: rgb(255, 244, 231);
+  padding: 8px;
+  margin: 8px;
+  float:left;
+}
+
+.item-template img.backgrnd {
+  position: absolute;
+  border-radius: 1.5em;
+  width: 280px;
+  height: 410px;
+  opacity: 0.1;
+}
+
 .header {
-  display: flex;
+  display:flex;
+}
+
+.address {
+  font-style: italic;
+  font-size: smaller;
+  font-weight: bold;
+  margin-top: 1px;
 }
 
 .name {
   font-size: 1.2rem;
   font-weight: 500;
+  margin-top: -1px;
 }
 
 .description {
@@ -18,21 +44,38 @@
 .contact-info {
   display: flex;
   flex-wrap: wrap;
+  float:right;
 }
 
 .photo {
   width: 100px;
-  height: 100px;
   float: left;
+  margin-right: 8px;
+  margin-bottom: 8px;
 }
 
 .photo-img {
   max-width: 100%;
   height: auto;
+  border-radius: 0.5em;
 }
 
 .photo-placeholder {
   background-color: #f0f0f0;
   height: 100%;
   width: 100%;
+}
+
+@media screen and (max-width: 830px) {
+  .item-template {
+    width: auto;
+    height: 410px;
+    margin-right: 20px !important;
+  }
+  
+  .item-template img.backgrnd {
+    width: auto;
+    height: 410px;
+    margin-right: 20px !important;
+  }
 }

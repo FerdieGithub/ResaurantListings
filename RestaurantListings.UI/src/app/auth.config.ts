@@ -7,5 +7,5 @@ export const authCodeFlowConfig: AuthConfig = {
   clientId: 'RestaurantListings',
   responseType: 'code',
   scope: 'openid profile RestaurantListingsAPI',
-  timeoutFactor: 0.01,
+  timeoutFactor: 0.75,
 };

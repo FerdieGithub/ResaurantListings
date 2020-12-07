@@ -12,6 +12,8 @@ namespace RestaurantListings.Data
     {
         public DbSet<Restaurant> Restaurants { get; protected set; }
 
+        public DbSet<UserRating> UserRating { get; protected set; }
+
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
@@ -21,6 +23,11 @@ namespace RestaurantListings.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            //Indexes (and unique constraints)
+            builder.Entity<UserRating>()
+                .HasIndex(t => new { t.UserName, t.RestaurantId })
+                .IsUnique();
 
             builder.Entity<Restaurant>(e =>
             {
@@ -130,7 +137,9 @@ namespace RestaurantListings.Data
                         PhotoUri = "/images/brunswick.jpg"
                     }
                 );
+
             });
+
         }
     }
 }

@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnInit
 } from '@angular/core';
 
 import { Restaurant } from 'app/restaurants/restaurants.models';
@@ -14,8 +14,7 @@ import { Restaurant } from 'app/restaurants/restaurants.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RestaurantListComponent implements OnInit {
-  @Input()
-  restaurants: Restaurant[] | null = null;
+  @Input() restaurants: Restaurant[] | null = null;
 
   constructor() {}
 

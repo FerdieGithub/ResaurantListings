@@ -1,23 +1,32 @@
-<div class="photo">
-  <img [src]="restaurant.photoUri" class="photo-img" />
-</div>
+<!-- <div class="item-template" [style.background-image]="'url(' + restaurant.photoUri + ')'"> -->
+<div class="item-template">
 
-<div class="header">
-  <h3 class="name">
-    {{ restaurant.name }}
-  </h3>
-</div>
+  <img [src]="restaurant.photoUri" class="backgrnd" />
 
-<div class="address">
-  {{ restaurant.address }}
-</div>
+  <div class="photo">
+    <img [src]="restaurant.photoUri" class="photo-img" />
+  </div>
 
-<div class="description">
-  {{ restaurant.description }}
-</div>
+  <div class="header">
+    <h3 class="name">
+      {{ restaurant.name }}
+    </h3>
+  </div>
 
-<div class="contact-info">
-  <span class="phone-number">
-    {{ restaurant.phoneNumber }}
-  </span>
+  <app-restaurant-rating [starRating]="restaurant.rating" [userRating]="restaurant.userRating"></app-restaurant-rating>
+
+  <div class="address">
+    {{ restaurant.address }}
+  </div>
+
+  <div class="description">
+    {{ restaurant.description }}
+  </div>
+
+  <div class="contact-info">
+    <span class="phone-number">
+      <b>Tel: {{ restaurant.phoneNumber }}</b>
+    </span>
+  </div>
+
 </div>

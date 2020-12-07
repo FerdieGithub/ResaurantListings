@@ -7,7 +7,7 @@
     <div class="label">Tags</div>
 
     <div class="filter-item" *ngFor="let tag of tags; let i = index">
-      <input type="checkbox" [value]="tag" (change)="onTagChecked(tag)" />
+      <input type="checkbox" [value]="tag" (change)="onTagChecked($event, tag)" />
       {{ tag }}
     </div>
   </div>

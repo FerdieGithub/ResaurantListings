@@ -1,1 +1,21 @@
-<p>restaurant-rating works!</p>
+<div class="ratingContainer">
+    <span [ngClass]="(starRating >= 1)?'fa fa-star checked':'fa fa-star'"></span>
+    <span [ngClass]="(starRating >= 2)?'fa fa-star checked':'fa fa-star'"></span>
+    <span [ngClass]="(starRating >= 3)?'fa fa-star checked':'fa fa-star'"></span>
+    <span [ngClass]="(starRating >= 4)?'fa fa-star checked':'fa fa-star'"></span>
+    <span [ngClass]="(starRating >= 5)?'fa fa-star checked':'fa fa-star'"></span>
+</div> 
+
+<div *ngIf="authenticated">
+  <mat-form-field class="ratingControl" appearance="fill">
+    <mat-label class="ratingControl">My Rating</mat-label>
+    <mat-select class="ratingControl" (selectionChange)="changeValue($event)" [(value)]="userRating">
+      <mat-option class="ratingControl" value="0">Not Rated</mat-option>
+      <mat-option class="ratingControl" value="1">1 - Very Bad</mat-option>
+      <mat-option class="ratingControl" value="2">2 - Poor</mat-option>
+      <mat-option class="ratingControl" value="3">3 - Average</mat-option>
+      <mat-option class="ratingControl" value="4">4 - Good</mat-option>
+      <mat-option class="ratingControl" value="5">4 - Excellent</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
