@@ -6,6 +6,7 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { AppComponent } from 'app/app.component';
 import { NavbarComponent } from 'app/layout/navbar/navbar.component';
 import { AppMaterialModules } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { AppMaterialModules } from './material.module';
     HttpClientModule,
     OAuthModule.forRoot(),
     AppRoutingModule,
+    BrowserAnimationsModule,
 
     // Material Modules
     AppMaterialModules

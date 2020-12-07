@@ -11,6 +11,12 @@
   font-size: 0.75em;
 }
 
-.ratingControl{
-  font-size: smaller;
+::ng-deep .mat-select-content{
+  width:100px !important;
+  font-size: 10px !important;   
+}
+
+::ng-deep .mat-form-field{
+  width:100px !important;
+  font-size: 10px !important;   
 }

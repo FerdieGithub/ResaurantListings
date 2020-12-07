@@ -12,7 +12,7 @@ namespace RestaurantListings.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UserName = table.Column<string>(nullable: false),
+                    UserHandle = table.Column<string>(nullable: false),
                     RestaurantId = table.Column<int>(nullable: false),
                     Rating = table.Column<decimal>(nullable: false)
                 },
@@ -25,12 +25,6 @@ namespace RestaurantListings.Data.Migrations
                         principalTable: "Restaurants",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserRating_AspNetUsers_UserName",
-                        column: x => x.UserName,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -39,9 +33,9 @@ namespace RestaurantListings.Data.Migrations
                 column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRating_UserName_RestaurantId",
+                name: "IX_UserRating_UserHandle_RestaurantId",
                 table: "UserRating",
-                columns: new[] { "UserName", "RestaurantId" },
+                columns: new[] { "UserHandle", "RestaurantId" },
                 unique: true);
         }
 

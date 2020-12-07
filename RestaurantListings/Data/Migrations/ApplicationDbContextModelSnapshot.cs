@@ -431,7 +431,7 @@ namespace RestaurantListings.Data.Migrations
                     b.Property<int>("RestaurantId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("UserHandle")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -439,7 +439,7 @@ namespace RestaurantListings.Data.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.HasIndex("UserName", "RestaurantId")
+                    b.HasIndex("UserHandle", "RestaurantId")
                         .IsUnique();
 
                     b.ToTable("UserRating");
@@ -501,12 +501,6 @@ namespace RestaurantListings.Data.Migrations
                     b.HasOne("RestaurantListings.Data.Entities.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RestaurantListings.Data.Entities.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

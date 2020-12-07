@@ -26,7 +26,7 @@ namespace RestaurantListings.Data
 
             //Indexes (and unique constraints)
             builder.Entity<UserRating>()
-                .HasIndex(t => new { t.UserName, t.RestaurantId })
+                .HasIndex(t => new { UserSid = t.UserHandle, t.RestaurantId })
                 .IsUnique();
 
             builder.Entity<Restaurant>(e =>

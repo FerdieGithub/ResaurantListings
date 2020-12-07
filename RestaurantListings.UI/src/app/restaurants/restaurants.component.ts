@@ -11,26 +11,20 @@ import { RestaurantsService } from 'app/restaurants/restaurants.service';
 })
 export class RestaurantsComponent implements OnInit {
 
-  authenticated = false;
-  user : string | undefined = undefined;
-
   restaurants: Restaurant[] | null = null;
 
   tags!: Observable<string[]>;
 
   filters = new BehaviorSubject<any>({});
 
-  constructor(private restaurantsService: RestaurantsService) {
-    this.authenticated = restaurantsService.authenticated;
-    this.user = restaurantsService.getUserId();
-  }
+  constructor(private restaurantsService: RestaurantsService) {}
 
   ngOnInit(): void {
     this.filters
       .pipe(
         switchMap((filters) =>
           this.restaurantsService
-            .getRestaurants(this.authenticated ? this.user : "")
+            .getRestaurants()
             .pipe(
               map((restaurants) => this.filterRestaurants(restaurants, filters))
             )
@@ -39,7 +33,7 @@ export class RestaurantsComponent implements OnInit {
       .subscribe((restaurants) => (this.restaurants = restaurants));
 
     this.tags = this.restaurantsService
-      .getRestaurants(this.authenticated ? this.user : "")
+      .getRestaurants()
       .pipe(map((restaurants) => restaurants.flatMap((x) => x.tags)));
   }
 
@@ -69,9 +63,6 @@ export class RestaurantsComponent implements OnInit {
       restaurants = restaurants.filter((x) => x.familyFriendly);
     }
 
-
-
-    
     return restaurants;
   }
 }

@@ -9,7 +9,7 @@ using RestaurantListings.Data;
 namespace RestaurantListings.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201204042856_UserRating")]
+    [Migration("20201207005204_UserRating")]
     partial class UserRating
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -433,7 +433,7 @@ namespace RestaurantListings.Data.Migrations
                     b.Property<int>("RestaurantId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("UserHandle")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -441,7 +441,7 @@ namespace RestaurantListings.Data.Migrations
 
                     b.HasIndex("RestaurantId");
 
-                    b.HasIndex("UserName", "RestaurantId")
+                    b.HasIndex("UserHandle", "RestaurantId")
                         .IsUnique();
 
                     b.ToTable("UserRating");
@@ -503,12 +503,6 @@ namespace RestaurantListings.Data.Migrations
                     b.HasOne("RestaurantListings.Data.Entities.Restaurant", "Restaurant")
                         .WithMany()
                         .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RestaurantListings.Data.Entities.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserName")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

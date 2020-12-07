@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,8 +36,8 @@ namespace RestaurantListings.Controllers
         /// <summary>
         /// Returns all restaurants, including the current user's restaurant ratings
         /// </summary>
-        [HttpPost("user")]
-        public async Task<List<UserRestaurant>> GetForUser([FromBody]string user)
+        [HttpGet("user/{user}")]
+        public async Task<List<UserRestaurant>> GetForUser(string user)
         {
             List<Restaurant> data = await _context.Restaurants.ToListAsync();
             Dictionary<int, UserRestaurant> dataMapped = _mapper
@@ -45,7 +46,7 @@ namespace RestaurantListings.Controllers
             var userRatings = await GetUserRatings(user);
             foreach (var rating in userRatings)
             {
-                dataMapped[rating.RestaurantId].UserRating = rating.Rating;
+                dataMapped[rating.RestaurantId].UserRating = Convert.ToInt32(rating.Rating);
             }
             return dataMapped.Values.ToList();
         }
@@ -57,30 +58,37 @@ namespace RestaurantListings.Controllers
         public async Task<List<UserRating>> GetUserRatings(string user)
         {
             return await _context.UserRating
-                .Where(x => x.UserName == user)
+                .Where(x => x.UserHandle == user)
                 .ToListAsync();
         }
 
         /// <summary>
         /// Load or set a user restaurant rating
         /// </summary>
-        [HttpPost("rate")]
-        public async Task SubmitRating([FromBody] UserRateRestaurant rate)
+        [HttpGet("rate/{restaurantId}/{rating}/{user}")]
+        public async Task<bool> RateRestaurant(int restaurantId, decimal rating, string user)
         {
             UserRating entity = await _context.UserRating
-                .FirstOrDefaultAsync(x => x.RestaurantId == rate.RestaurantId && x.UserName == rate.UserName);
+                .FirstOrDefaultAsync(x => x.RestaurantId == restaurantId && x.UserHandle == user);
 
             if (entity == null)
             {
-                entity = _mapper.Map<UserRating>(rate);
+                entity = new UserRating
+                {
+                    RestaurantId = restaurantId,
+                    Rating = rating,
+                    UserHandle = user
+                };
                 await _context.UserRating.AddAsync(entity);
             }
             else
             {
-                entity.Rating = rate.Rating;
+                entity.Rating = rating;
             }
 
             await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

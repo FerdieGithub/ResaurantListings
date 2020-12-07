@@ -35,6 +35,14 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20201204041349_UserRating.cs" />
     <Compile Remove="Data\Migrations\20201204041349_UserRating.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201204042856_UserRating.cs" />
+    <Compile Remove="Data\Migrations\20201204042856_UserRating.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201207002307_UsernameNonRef.cs" />
+    <Compile Remove="Data\Migrations\20201207002307_UsernameNonRef.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201207002528_UserRating.cs" />
+    <Compile Remove="Data\Migrations\20201207002528_UserRating.Designer.cs" />
+    <Compile Remove="Data\Migrations\20201207002847_UserRating.cs" />
+    <Compile Remove="Data\Migrations\20201207002847_UserRating.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

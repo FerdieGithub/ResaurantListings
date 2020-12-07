@@ -10,9 +10,7 @@ namespace RestaurantListings.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("User")]
-        public string UserName { get; set; }
-        public ApplicationUser User { get; set; }
+        public string UserHandle { get; set; }
 
         [Required]
         [ForeignKey("Restaurant")]

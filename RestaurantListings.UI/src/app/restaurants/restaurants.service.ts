@@ -18,7 +18,7 @@ export class RestaurantsService {
   getUserId(): string {
     if (this.authenticated){
       var identityClaims : any = this.oauthService.getIdentityClaims();
-      return identityClaims?.sid;
+      return identityClaims?.sub;
     }
     return "";
   }
@@ -26,22 +26,26 @@ export class RestaurantsService {
   /**
    * Gets the available restaurants.
    */
-  getRestaurants(user : string = ""): Observable<Restaurant[]> {
-    var userName : string = this.getUserId();
-    if(userName === "" || userName === undefined || userName === null){
+  getRestaurants(): Observable<Restaurant[]> {
+    var user : string = this.getUserId();
+    if(user === "" || user === undefined || user === null){
       return this.http.get<Restaurant[]>('/api/restaurants');
     }else{
-      return this.http.post<Restaurant[]>('/api/restaurants/user', user);
+      return this.http.get<Restaurant[]>(`/api/restaurants/user/${user}`);
     }
   }
 
-  rateRestaurant(restaurant : Restaurant, user : string, rating : number) {
-    var rateRestaurantObj = {
-      UserName : user,
-      RestaurantId : restaurant.id,
-      Rating : rating
-    };
-    this.http.post('/api/restaurants/rate', rateRestaurantObj);
-  }
+  rateRestaurant(restaurantId : number, user : string, rating : number) {
+    return new Promise((resolve, reject) => {
+      this.http.get<any>(`/api/restaurants/rate/${restaurantId}/${rating}/${user}`)
+        .toPromise()
+        .then((res: any) => {
+          resolve(res);
+        })
+        .catch(error => {
+          reject("Failed to submit rating: " + error.toString());
+        });
+    });
+  } 
 
 }
