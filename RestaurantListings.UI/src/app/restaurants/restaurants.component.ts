@@ -18,7 +18,13 @@ export class RestaurantsComponent implements OnInit, OnDestroy  {
 
   constructor(private restaurantsService: RestaurantsService) {}
 
-  ngOnInit(): void {
+  sleep(ms : number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async ngOnInit() {
+
+    await this.sleep(1000); //hack to fix async issue when logging on too late on first login (my apologies, not the best effort, but ran out of time for a better solution)
 
     var restaurantsObservable = this.restaurantsService.getRestaurants();
 

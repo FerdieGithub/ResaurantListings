@@ -19,7 +19,14 @@ export class AppComponent {
   }
 
   onSignIn(): void {
-    this.oauthService.initCodeFlow();
+    this.oauthService.tryLoginCodeFlow().then(() => {
+      if (!this.oauthService.hasValidAccessToken()) {
+        console.log("no valid token : ")
+        this.oauthService.initCodeFlow(window.location.origin + '/logged-in');
+      } else {
+        console.log(" valid token : ")
+      }
+    });
   }
 
   onSignOut(): void {
